@@ -195,7 +195,7 @@ def _preprocess_data(data):
 # The code below is for demonstration purposes only. You will not
 # receive marks for submitting this code in an unchanged state.
 # ---------------------------------------------------------------
-
+    df_all = pd.get_dummies(df_all)
     # ----------- Replace this code with your own preprocessing steps --------
     predict_vector = df_all[['Age', 'Average_Rating', 'Destination Lat', 'Destination Long',
            'Distance (KM)', 'No_Of_Orders', 'Pickup - Day of Month',

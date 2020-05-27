@@ -189,7 +189,7 @@ def _preprocess_data(data):
                           'No_of_Ratings', 'calc_distance', 'Placement - Time',
                           'Confirmation - Time', 'Pickup - Time', 'Arrival at Pickup - Time',
                           'Total_distance_covered(KM)', 'Tot_sec_picup_dest(KM)', 'riders_speed',
-                          'ampmconfirm', 'Order No', 'User Id', 'Vehicle Type', 'Rider Id','Arrival at Destination - Time'], axis=1)
+                          'ampmconfirm', 'Order No', 'User Id', 'Vehicle Type', 'Rider Id'], axis=1)
 
 #
 # The code below is for demonstration purposes only. You will not

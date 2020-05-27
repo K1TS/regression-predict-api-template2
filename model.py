@@ -27,49 +27,7 @@ import pandas as pd
 import pickle
 import json
 
-# functions
-def to_seconds(x):
-        v = pd.DatetimeIndex(df_all[x])
-        df_all[x+'_'+'seconds'] = v.hour*60*60+v.minute*60+v.second
-        return df_all
-def convert_per_five_day(x):
-        if x < 6:
-            return 1
-        if x < 11 and x >= 6:
-            return 2
-        if x < 16 and x >= 11:
-            return 3
-        if x < 21 and x >= 16:
-            return 4
-        if x < 26 and x >= 21:
-            return 5
-        return 6
-def grouped_features(Id, feature, new_name, df):
-        group = df.groupby(Id).sum().reset_index()[[Id, feature]]
-        group[new_name] = group[[feature]]
-        group = group.drop(feature, axis=1)
-        df = df.merge(group, how='left', on=Id)
-        return df
-def calculate_distance(Latitude, Longitude, latitude2, longitude):
-        R = 6373.0
 
-        Latitude = np.radians(Latitude)
-        Longitude = np.radians(Longitude)
-        latitude2 = np.radians(latitude2)
-        longitude = np.radians(longitude)
-
-        dlon = longitude - Longitude
-        dlat = latitude2 - Latitude
-
-        x = np.sin(dlat / 2)**2
-        y = np.cos(Latitude) * np.cos(latitude2)
-        a = x + y * np.sin(dlon / 2)**2
-        c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
-
-        return R * c
-
-
-       
 
 
 
@@ -101,6 +59,61 @@ def _preprocess_data(data):
     # ---------------------------------------------------------------
     # NOTE: You will need to swap the lines below for your own data
     # preprocessing methods.
+    
+    
+    
+    
+            # functions
+    def to_seconds(x):
+            v = pd.DatetimeIndex(df_all[x])
+            df_all[x+'_'+'seconds'] = v.hour*60*60+v.minute*60+v.second
+            return df_all
+    def convert_per_five_day(x):
+            if x < 6:
+                return 1
+            if x < 11 and x >= 6:
+                return 2
+            if x < 16 and x >= 11:
+                return 3
+            if x < 21 and x >= 16:
+                return 4
+            if x < 26 and x >= 21:
+                return 5
+            return 6
+    def grouped_features(Id, feature, new_name, df):
+            group = df.groupby(Id).sum().reset_index()[[Id, feature]]
+            group[new_name] = group[[feature]]
+            group = group.drop(feature, axis=1)
+            df = df.merge(group, how='left', on=Id)
+            return df
+    def calculate_distance(Latitude, Longitude, latitude2, longitude):
+            R = 6373.0
+
+            Latitude = np.radians(Latitude)
+            Longitude = np.radians(Longitude)
+            latitude2 = np.radians(latitude2)
+            longitude = np.radians(longitude)
+
+            dlon = longitude - Longitude
+            dlat = latitude2 - Latitude
+
+            x = np.sin(dlat / 2)**2
+            y = np.cos(Latitude) * np.cos(latitude2)
+            a = x + y * np.sin(dlon / 2)**2
+            c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+
+            return R * c
+
+
+           
+        
+        
+        
+        
+        
+    
+    
+    
     
     df_all['Temperature'] = df_all.groupby('Placement - Day of Month')['Temperature'].transform(lambda x: x.fillna(x.median()))
 

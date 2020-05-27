@@ -29,7 +29,7 @@ test = pd.read_csv('data/test_data.csv')
 riders = pd.read_csv('data/riders.csv')
 test = test.merge(riders, how='left', on='Rider Id')
 
-# Convert our DataFrame to a JSON string.
+# Convert our DataFrame to a JSON string# Convert our DataFrame to a JSON string.
 # This step is necessary in order to transmit our data via HTTP/S
 feature_vector_json = test.iloc[1].to_json()
 

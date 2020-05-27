@@ -189,8 +189,7 @@ X_train = train[['Age', 'Average_Rating', 'Destination Lat', 'Destination Long',
        'Ranking_Distribution', 'Per_Fiveday_Ofmonth',
        'Change_Distance', 'Pick_Dist', 'Destination_Dist',
        'orderedtransformed', 'averageRating', 'age_tranformed',
-       'distanceinkmtransformed', 'Personal or Business_Business',
-       'Personal or Business_Personal']]
+       'distanceinkmtransformed']]
 
 # Fit model
 lm_regression = LinearRegression(normalize=True)
